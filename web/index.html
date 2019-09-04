@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=660, user-scalable=false">
+
+    <title>The North-o-Meter</title>
+
+    <meta name="description" content="Our almost always accurate test to analyse how Northern you are.">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="image_src" href="intro.jpg">
+
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    
+    <script>
+      var ratings = [
+        'That\'s somewhere around Jersey.',
+        'That\'s somewhere around Bournemouth.',
+        'That\'s somewhere around London.',
+        'That\'s somewhere around Oxford.',
+        'That\'s somewhere around Wolverhampton.',
+        'That\'s somewhere around Nottingham.',
+        'That\'s somewhere around Doncaster.',
+        'That\'s somewhere around Hull.',
+        'That\'s somewhere around York.',
+        'That\'s somewhere around Middlesbrough.',
+        'That\'s somewhere around Newcastle.'
+      ];
+
+      var height = 50;
+      var questions =
+        [{"q":"When did you last eat chips and gravy?","a0":"This week","e0":10,"a1":"This year","e1":5,"a2":"Longer, if ever","e2":-10},
+          {"q":"Wheear 'ast tha bin sin' ah saw thee?\n","a0":"On Ilkla Mooar baht 'at\n","e0":10,"a1":"Wheear t'ducks play football","e1":7,"a2":"What?","e2":-10},
+          {"q":"What's an oatcake?","a0":"It's like an oaty pancake","e0":5,"a1":"It's like oaty flatbread","e1":5,"a2":"It's like porridge","e2":-5},
+          {"q":"When do you wear a coat?","a0":"When it's cold","e0":-5,"a1":"When there's an R in the month","e1":-3,"a2":"When hell freezes over","e2":10},
+          {"q":"In the evening, do you have...","a0":"Dinner","e0":-5,"a1":"Supper","e1":-2,"a2":"Tea","e2":5},
+          {"q":"Pie barm!","a0":"Gerrit in yer.","e0":10,"a1":"Death on a plate","e1":5,"a2":"I have no idea what that is","e2":-10},
+          {"q":"Someone talks to you on a bus. Do you...","a0":"Assume they want money","e0":-5,"a1":"Politely ignore them","e1":-3,"a2":"Chat back","e2":10},
+          {"q":"What are you drinking?","a0":"Bitter","e0":5,"a1":"Mild","e1":3,"a2":"Pear cider","e2":-10},
+          {"q":"In the playground, did you play...","a0":"Tig or tiggy","e0":5,"a1":"Tag or tap","e1":-5,"a2":"Had, hit or it","e2":-10}];
+
+      var question = {};
+
+      function panel(id) {
+        $('.panel').css({display: 'none'});
+        $('#' + id).css({display: 'table'});
+      }
+
+      function startTest() {
+        height = 50;
+        setThermo();
+        nextQuestion();
+        panel('game');
+      }
+
+      function setThermo() {
+        $('#map-pointer').stop().animate(
+          {
+            'top': (100-height).toString() + '%'
+          },
+          2000, "easeOutElastic");
+      }
+
+      function nextQuestion() {
+        question = questions.shift();
+        $('#game h2').text(question.q);
+        $('#game button:eq(0)').text(question.a0);
+        $('#game button:eq(1)').text(question.a1);
+        $('#game button:eq(2)').text(question.a2);
+      }
+
+      function handleAnswer(id) {
+        height += question['e' + id.toString()];
+        if (height > 100) {
+          height = 100;
+        }
+
+        if (height < 0) {
+          height = 0;
+        }
+
+        setThermo();
+
+        if (questions.length > 0) {
+          nextQuestion();
+        } else {
+          gameOver();
+        }
+      }
+
+      function gameOver() {
+        $('.height').text(height.toString());
+        $('#rating').text(ratings[Math.min(Math.floor(height/10),10)]);
+        panel('results');
+      }
+
+
+      $(document).ready(function () {
+        setThermo();
+      });
+    </script>
+
+    <style>
+        /* http://meyerweb.com/eric/tools/css/reset/ 
+           v2.0 | 20110126
+           License: none (public domain)
+        */
+
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+
+        body { font: 24px 'Roboto Condensed'; font-size: 4vmin; text-align: center; overflow-y: scroll; background: #07232f url(bg.jpg) center center no-repeat; background-size: cover; -webkit-text-size-adjust: none; width: 100%; height: 100%; }
+
+        #map-pointer { width: 100%; height: 100%; position: absolute; top: 100%; bottom: 0; width: 30%; height: 20%; margin-top: -5%; background: url(pointer.png) center left no-repeat; background-size: contain; }
+        #over { width: 100%; height: 100%; background: url(map.gif) left center; background-size: auto 100%; background-repeat: no-repeat; position: absolute; }
+        .panel { position: absolute; left: 30%; top: 3%; vertical-align: middle; width: 60%; height: 80%; display: none; background-color: rgba(255,255,255,0.7); border-radius: 5%; }
+        #intro { display: table; }
+        .contents { text-align: center; display: table-cell; height: 100%; width: 100%; vertical-align: middle; padding: 5%; }
+        .contents button { margin-top: 5%; }
+        #score { font-size: 13vmin; margin-bottom: 2%; color: #fff; text-shadow: 1px 1px #000; font-weight: bold; line-height: 13vmin; }
+
+        #twitter, #facebook { display: table; width: 100%; position: relative; font-size: 70%; margin-top: 5vmin; }
+
+        #twitter iframe, #facebook iframe {
+            width: 48% !important;
+            margin-top: 6%;
+            -moz-transform: scale(2);
+            -webkit-transform: scale(2);
+            -o-transform: scale(2);
+            -ms-transform: scale(2);
+            transform: scale(2);
+        }
+
+        h1 img {
+            width: 100%;
+        }
+
+        h2 {
+            font: 6vmin 'Roboto Condensed'; font-weight: bold; margin: 2% 0;
+        }
+
+        button {
+            width: 100%; padding: 20px 0; font: 5vmin 'Roboto Condensed';
+        }
+
+        @media screen and (max-width: 960px) {
+            .panel { left: 10%; width: 80%; }
+        }
+        
+        #content {
+            position: absolute; top: 30px; bottom: 0; left: 0; right: 0;
+        }
+    </style>
+<body>
+
+<div id="content">
+    <div id="over"></div>
+
+    <div id="map-pointer"></div>
+
+    <div class="panel" id="intro">
+        <div class="contents">
+            <h1><img src="logo.png" alt=""></h1>
+            <p>Our scientific, 100%-accurate test will work out where in the country you belong.</p>
+            <button onClick="startTest();">Start the test</button>
+        </div>
+    </div>
+
+    <div class="panel" id="game">
+        <div class="contents">
+            <h2>Loading...</h2>
+            <button onClick="handleAnswer(0);"></button>
+            <button onClick="handleAnswer(1);"></button>
+            <button onClick="handleAnswer(2);"></button>
+        </div>
+    </div>
+
+    <div class="panel" id="results">
+        <div class="contents">
+            The results are in! We reckon you're
+            <div id="score"><span class="height">50</span>% northern</div>
+            <div id="rating">Your rating will go here.</div>
+
+            <div id="twitter">There aren't sharing buttons.<br>This doesn't need to go viral again.</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,2 +1,2 @@
-# north-o-meter
-The code for popular north-o-meter quiz.
+# North-o-meter
+The code, albeit slightly modified, for popular north-o-meter quiz!
