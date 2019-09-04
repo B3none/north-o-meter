@@ -14,43 +14,47 @@
     <link rel="icon" href="/favicon.ico">
     <link rel="image_src" href="images/intro.jpg">
 <body>
+    <div id="content">
+        <div id="over"></div>
 
-<div id="content">
-    <div id="over"></div>
+        <div id="map-pointer"></div>
 
-    <div id="map-pointer"></div>
+        <div class="panel" id="intro">
+            <div class="contents">
+                <h1><img src="images/logo.png" alt="North-o-Meter logo"></h1>
+                <p>Our scientific, 100%-accurate test will work out where in the country you belong.</p>
+                <button onClick="startTest();">
+                    Start the test
+                </button>
+            </div>
+        </div>
 
-    <div class="panel" id="intro">
-        <div class="contents">
-            <h1><img src="images/logo.png" alt=""></h1>
-            <p>Our scientific, 100%-accurate test will work out where in the country you belong.</p>
-            <button onClick="startTest();">Start the test</button>
+        <div class="panel" id="game">
+            <div class="contents">
+                <h2>Loading...</h2>
+                <button onClick="handleAnswer(0);"></button>
+                <button onClick="handleAnswer(1);"></button>
+                <button onClick="handleAnswer(2);"></button>
+            </div>
+        </div>
+
+        <div class="panel" id="results">
+            <div class="contents">
+                The results are in! We reckon you're
+                <div id="score">
+                    <span class="height">50</span>% northern
+                </div>
+                <div id="rating">
+                    Your rating will go here.
+                </div>
+
+                <div id="twitter">There aren't sharing buttons.<br>This doesn't need to go viral again.</div>
+            </div>
         </div>
     </div>
 
-    <div class="panel" id="game">
-        <div class="contents">
-            <h2>Loading...</h2>
-            <button onClick="handleAnswer(0);"></button>
-            <button onClick="handleAnswer(1);"></button>
-            <button onClick="handleAnswer(2);"></button>
-        </div>
-    </div>
-
-    <div class="panel" id="results">
-        <div class="contents">
-            The results are in! We reckon you're
-            <div id="score"><span class="height">50</span>% northern</div>
-            <div id="rating">Your rating will go here.</div>
-
-            <div id="twitter">There aren't sharing buttons.<br>This doesn't need to go viral again.</div>
-        </div>
-    </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
-<script src="js/game.js"></script>
-
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script src="js/game.js"></script>
 </body>
 </html>
