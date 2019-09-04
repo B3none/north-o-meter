@@ -1,0 +1,152 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+          v2.0 | 20110126
+          License: none (public domain)
+       */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    font: 24px 'Roboto Condensed';
+    font-size: 4vmin;
+    text-align: center;
+    overflow-y: scroll;
+    background: #07232f url(../images/bg.jpg) center center no-repeat;
+    background-size: cover;
+    -webkit-text-size-adjust: none;
+    width: 100%;
+    height: 100%;
+}
+
+#map-pointer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 100%;
+    bottom: 0;
+    width: 30%;
+    height: 20%;
+    margin-top: -5%;
+    background: url(../images/pointer.png) center left no-repeat;
+    background-size: contain;
+}
+
+#over {
+    width: 100%;
+    height: 100%;
+    background: url(../images/map.gif) left center;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.panel {
+    position: absolute;
+    left: 30%;
+    top: 3%;
+    vertical-align: middle;
+    width: 60%;
+    height: 80%;
+    display: none;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5%;
+}
+
+#intro {
+    display: table;
+}
+
+.contents {
+    text-align: center;
+    display: table-cell;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+    padding: 5%;
+}
+
+.contents button {
+    margin-top: 5%;
+}
+
+#score {
+    font-size: 13vmin;
+    margin-bottom: 2%;
+    color: #fff;
+    text-shadow: 1px 1px #000;
+    font-weight: bold;
+    line-height: 13vmin;
+}
+
+#twitter, #facebook {
+    display: table;
+    width: 100%;
+    position: relative;
+    font-size: 70%;
+    margin-top: 5vmin;
+}
+
+#twitter iframe, #facebook iframe {
+    width: 48% !important;
+    margin-top: 6%;
+    -moz-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+    -ms-transform: scale(2);
+    transform: scale(2);
+}
+
+h1 img {
+    width: 100%;
+}
+
+h2 {
+    font: 6vmin 'Roboto Condensed';
+    font-weight: bold;
+    margin: 2% 0;
+}
+
+button {
+    width: 100%;
+    padding: 20px 0;
+    font: 5vmin 'Roboto Condensed';
+}
+
+@media screen and (max-width: 960px) {
+    .panel {
+        left: 10%;
+        width: 80%;
+    }
+}
+
+#content {
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
